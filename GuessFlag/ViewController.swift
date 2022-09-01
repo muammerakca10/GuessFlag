@@ -19,9 +19,26 @@ class ViewController: UIViewController {
     var score = 0
     var correctAnswer = 0
     
+    let scoreLabel : UILabel? = nil
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        if let navigationBar = self.navigationController?.navigationBar {
+            
+            let scoreFrame = CGRect(x: navigationBar.frame.width / 1.5 , y: navigationBar.frame.height / 2, width: navigationBar.frame.width / 3, height: navigationBar.frame.height / 2)
+            
+            let scoreLabel = UILabel(frame: scoreFrame)
+            
+            scoreLabel.text = "Score: 0"
+            
+            
+            navigationBar.addSubview(scoreLabel)
+        }
+
+        
         countries += ["estonia","france","germany","ireland","italy","monaco","nigeria","poland","russia","spain","uk","us"]
         
         button1.layer.borderWidth = 1
@@ -33,6 +50,20 @@ class ViewController: UIViewController {
         button3.layer.borderColor = UIColor.lightGray.cgColor
         
         askQuestion()
+        
+        if let navigationBar = self.navigationController?.navigationBar {
+            
+            let scoreFrame = CGRect(x: navigationBar.frame.width / 1.5 , y: navigationBar.frame.height / 2, width: navigationBar.frame.width / 3, height: navigationBar.frame.height / 2)
+            
+            let scoreLabel = UILabel(frame: scoreFrame)
+            
+            scoreLabel.text = "Score: \(score)"
+            
+            
+            navigationBar.addSubview(scoreLabel)
+        }
+        
+        
     }
     
     func askQuestion (action : UIAlertAction! = nil){
@@ -44,6 +75,8 @@ class ViewController: UIViewController {
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         
         title = countries[correctAnswer].uppercased()
+        
+        view.backgroundColor = .white
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
@@ -52,15 +85,19 @@ class ViewController: UIViewController {
         if sender.tag == correctAnswer{
             title = "Correct"
             score += 1
+            view.backgroundColor = .green
         } else {
             title = "Wrong"
             score -= 1
+            view.backgroundColor = .red
         }
         
         let ac = UIAlertController(title: title, message: "Your score : \(score)", preferredStyle: .alert)
         
         ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
         present(ac, animated: true)
+        
+        scoreLabel?.text = "Score: \(score)"
     }
     
 }
