@@ -74,6 +74,7 @@ class ViewController: UIViewController {
     
     @IBAction func buttonTapped(_ sender: UIButton) {
         
+        //
         var title:String
         if sender.tag == correctAnswer{
             title = "Correct"
@@ -84,7 +85,7 @@ class ViewController: UIViewController {
             score -= 1
             view.backgroundColor = .red
         }
-        
+        //Game finished
         if totalQuestion == 10 {
             
             let acFinal = UIAlertController(title: "Game Finished", message: "Your score: \(score)", preferredStyle: .alert)
@@ -92,7 +93,7 @@ class ViewController: UIViewController {
             present(acFinal, animated: true)
             score = 0
             totalQuestion = 0
-        } else {
+        } else { //Game not finished
             let ac = UIAlertController(title: title, message: "Your score : \(score)", preferredStyle: .alert)
             
             ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
