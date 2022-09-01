@@ -18,6 +18,9 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCu-T0-a4w">
                                 <rect key="frame" x="95" y="108" width="224" height="114"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fCu-T0-a4w" secondAttribute="height" multiplier="112:57" id="8dc-Hw-Dof"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="us"/>
                                 <connections>
@@ -26,6 +29,9 @@
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZPW-RR-Vx4">
                                 <rect key="frame" x="95" y="230" width="224" height="114"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ZPW-RR-Vx4" secondAttribute="height" multiplier="112:57" id="9Si-pd-l2m"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="us"/>
                                 <connections>
@@ -36,6 +42,7 @@
                                 <rect key="frame" x="95" y="360" width="224" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="EMt-zz-mmk"/>
+                                    <constraint firstAttribute="width" secondItem="amK-2G-Kfe" secondAttribute="height" multiplier="56:25" id="Ykz-6K-hto"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="us"/>
@@ -51,8 +58,11 @@
                             <constraint firstItem="amK-2G-Kfe" firstAttribute="top" secondItem="ZPW-RR-Vx4" secondAttribute="bottom" constant="16" id="IEY-ez-Tff"/>
                             <constraint firstItem="fCu-T0-a4w" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NkO-my-iof"/>
                             <constraint firstItem="fCu-T0-a4w" firstAttribute="leading" secondItem="ZPW-RR-Vx4" secondAttribute="leading" id="VNa-3f-UrS"/>
+                            <constraint firstItem="ZPW-RR-Vx4" firstAttribute="height" secondItem="fCu-T0-a4w" secondAttribute="height" id="c1v-IL-v3q"/>
                             <constraint firstItem="ZPW-RR-Vx4" firstAttribute="top" secondItem="fCu-T0-a4w" secondAttribute="bottom" constant="8" symbolic="YES" id="cOh-h5-HVy"/>
                             <constraint firstItem="ZPW-RR-Vx4" firstAttribute="leading" secondItem="amK-2G-Kfe" secondAttribute="leading" id="efu-gi-nbe"/>
+                            <constraint firstItem="amK-2G-Kfe" firstAttribute="height" secondItem="ZPW-RR-Vx4" secondAttribute="height" multiplier="0.877193" id="fje-NJ-Toh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="amK-2G-Kfe" secondAttribute="bottom" constant="20" id="qJf-XM-GOS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CVS-lD-nc8"/>
