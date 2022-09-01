@@ -15,11 +15,13 @@ class ViewController: UIViewController {
     
     @IBOutlet var button3: UIButton!
     
+    var totalQuestion = 0
+    
     var countries = [String]()
     var score = 0
     var correctAnswer = 0
     
-    let scoreLabel : UILabel? = nil
+    let scoreLabel = UILabel()
     
     
     
@@ -29,13 +31,14 @@ class ViewController: UIViewController {
         if let navigationBar = self.navigationController?.navigationBar {
             
             let scoreFrame = CGRect(x: navigationBar.frame.width / 1.5 , y: navigationBar.frame.height / 2, width: navigationBar.frame.width / 3, height: navigationBar.frame.height / 2)
+            scoreLabel.frame = scoreFrame
             
-            let scoreLabel = UILabel(frame: scoreFrame)
+                scoreLabel.frame = scoreFrame
+                scoreLabel.text = "Score: "
+                
+                navigationBar.addSubview(scoreLabel)
             
-            scoreLabel.text = "Score: 0"
             
-            
-            navigationBar.addSubview(scoreLabel)
         }
 
         
@@ -50,20 +53,7 @@ class ViewController: UIViewController {
         button3.layer.borderColor = UIColor.lightGray.cgColor
         
         askQuestion()
-        
-        if let navigationBar = self.navigationController?.navigationBar {
-            
-            let scoreFrame = CGRect(x: navigationBar.frame.width / 1.5 , y: navigationBar.frame.height / 2, width: navigationBar.frame.width / 3, height: navigationBar.frame.height / 2)
-            
-            let scoreLabel = UILabel(frame: scoreFrame)
-            
-            scoreLabel.text = "Score: \(score)"
-            
-            
-            navigationBar.addSubview(scoreLabel)
-        }
-        
-        
+    
     }
     
     func askQuestion (action : UIAlertAction! = nil){
@@ -77,6 +67,9 @@ class ViewController: UIViewController {
         title = countries[correctAnswer].uppercased()
         
         view.backgroundColor = .white
+        scoreLabel.text = "Score : \(score)"
+        totalQuestion += 1
+        
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
@@ -87,17 +80,24 @@ class ViewController: UIViewController {
             score += 1
             view.backgroundColor = .green
         } else {
-            title = "Wrong"
+            title = "Wrong. This is \(countries[sender.tag].uppercased())'s flag"
             score -= 1
             view.backgroundColor = .red
         }
         
-        let ac = UIAlertController(title: title, message: "Your score : \(score)", preferredStyle: .alert)
-        
-        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-        present(ac, animated: true)
-        
-        scoreLabel?.text = "Score: \(score)"
+        if totalQuestion == 10 {
+            
+            let acFinal = UIAlertController(title: "Game Finished", message: "Your score: \(score)", preferredStyle: .alert)
+            acFinal.addAction(UIAlertAction(title: "Play again", style: .default, handler: askQuestion))
+            present(acFinal, animated: true)
+            score = 0
+            totalQuestion = 0
+        } else {
+            let ac = UIAlertController(title: title, message: "Your score : \(score)", preferredStyle: .alert)
+            
+            ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+            present(ac, animated: true)
+        }
     }
     
 }
